@@ -12,8 +12,8 @@ As per assignment, the solution consists of:
 
 - **fetch.py** : Consists of the following:
     - A cli interface that supports download/metadata operations.
-    - The --operation download flag followed by a list of absolute urls fetches the webpages and stores them inside "fetch" directory.
-    - The --operation metadata flag followd by a list of absolute urls gets the specified metadata for the urls
+    - The "--operation download" flag followed by a list of absolute urls fetches the webpages and stores them inside "fetch" directory.
+    - The "--operation metadata" flag followd by a list of absolute urls gets the specified metadata for the urls
 
 ### Script Output Screenshots
 
