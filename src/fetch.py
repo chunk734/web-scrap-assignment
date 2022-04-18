@@ -71,7 +71,7 @@ class fetch:
             self.webPage = requests.get(self.url)
         except Exception as error:
             print("\nWebpage \""+self.url+"\" download failed")
-            print("\nExecption while fetching the webpage: "+ error)
+            #print("\nExecption while fetching the webpage: "+ error)
             return
         soup = BeautifulSoup(self.webPage.content, "html.parser")
         if self.webPage.status_code != 200:
