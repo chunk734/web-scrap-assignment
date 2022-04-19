@@ -23,7 +23,10 @@ Docker Image Build:
 <img width="1237" alt="Screenshot 2022-04-18 at 6 20 08 PM" src="https://user-images.githubusercontent.com/17096303/163814582-9ac4493a-04fb-42b7-93e7-d9c09a834044.png">
 
 Fetch WebPages:<br>
+
 <img width="850" alt="Screenshot 2022-04-18 at 6 25 04 PM" src="https://user-images.githubusercontent.com/17096303/163814638-045a320c-9695-42ff-ac34-3b11aee322cc.png">
+
+<img width="674" alt="Screenshot 2022-04-19 at 12 22 56 PM" src="https://user-images.githubusercontent.com/17096303/163943416-b06040c5-539f-49c5-a564-64f728a665d2.png">
 
 Get Metadata for the WebPages:
 <img width="913" alt="Screenshot 2022-04-18 at 6 25 39 PM" src="https://user-images.githubusercontent.com/17096303/163814645-6ccc1407-b489-42cd-9abf-e35789c509e4.png">
