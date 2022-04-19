@@ -18,6 +18,13 @@ class fetch:
         self.metaData = {"metadata": []}
     
     def validateURL(self):
+        """
+        Function for the GET call on the url.
+       
+        Returns:
+        int: Status code for the url (valid/invalid)
+  
+        """
         try:
             validators.url(self.url)
         except Exception as error:
@@ -28,10 +35,21 @@ class fetch:
         self.load(fetch, metadata)
 
     def getCurrentUTCTimestamp(self):
+        """
+        Get current timestamp in UTC format.
+        
+        Returns:
+        str: Formatted UTC timestamp
+  
+        """
         utc_time = datetime.datetime.utcnow()
         return utc_time.strftime('%Y-%m-%d %H:%M:%S')
 
     def addMetadata(self):
+        """
+        Update/Add metadata of the downloaded url to the json file .
+ 
+        """
         flag = 0
         url = self.url.split("://")[1]
         for i in range(len(self.metaData["metadata"])):
@@ -49,6 +67,10 @@ class fetch:
         instance_metadata.save(self.metaData)
 
     def getMetadata(self):
+        """
+        Get metadata of the downloaded url from the json file and dup to stdout .
+  
+        """
         flag = 0
         self.loadMetadata()
         url = self.url.split("://")[1]
@@ -65,6 +87,10 @@ class fetch:
             print("\nWebPage \"" + url +"\" currently not present. Try downloading the page first.\n")
 
     def getWebpage(self):
+        """
+        Validate the provided url, make a GET request for the same and store it in a file.
+  
+        """       
         if self.validateURL():
             return
         try:
@@ -92,6 +118,10 @@ class fetch:
         print("\nWebpage \""+ self.url +"\" downloaded successfully\n")
 
     def load(self, path, name):
+        """
+        Load the metadata json file .
+  
+        """
         cwd = os.getcwd()
         
         path = os.path.join(cwd, directory)
@@ -102,18 +132,31 @@ class fetch:
             pass
         
     def findLinksCount(self):
+        """
+        Get links count from the webpage.
+  
+        """
         soup = BeautifulSoup(self.webPage.content, "html.parser")
         self.linksCount = len(soup.findAll('a'))
     
     def findImagesCount(self):
+        """
+        Get images count from the webpage.
+  
+        """
         soup = BeautifulSoup(self.webPage.content, "html.parser")
         self.imagesCount = len(soup.findAll('img'))
+
 
 class saveToDisk:
     def __init__(self, filename) -> None:
         self.filename = filename
 
     def save(self, content):
+        """
+        Save data to a file.
+  
+        """
         cwd = os.getcwd()
         
         path = os.path.join(cwd, directory)
@@ -128,18 +171,25 @@ class saveToDisk:
                 fp.write(content)
 
 def main():
-    parser = argparse.ArgumentParser(description ='.')
+    """
+    Driver code for the script.
   
-    # Adding Arguments
+    Instantiates the "fetch" class for every url in the list passed as argument from the CLI.
+  
+    """
+    parser = argparse.ArgumentParser(description ='.')  
+    # Adding flags "--operation" and "--urls" for the CLI
     parser.add_argument('-o','--operation', type = str, help ='Operation Type (download/metadata)')
     parser.add_argument('-u','--urls', type = str, nargs ='+', help ='Urls for the Webpages')
     
     args = parser.parse_args()
-
+    
+    # If operation is "download", then fetch the latest web-page
+    # If operation is "metadata", then fetch the latest metadata info for the last successful download
     if args.operation == "download":
         for url in args.urls:
             instance_fetch = fetch(url)
-            instance_fetch.getWebpage()  
+            instance_fetch.getWebpage()
     elif args.operation == "metadata":
         for url in args.urls:
             instance_fetch = fetch(url)
